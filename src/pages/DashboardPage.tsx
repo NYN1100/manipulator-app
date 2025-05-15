@@ -27,6 +27,7 @@ const DashboardPage = () => {
   const { position, samples } = useSelector(
     (state: RootState) => state.manipulator
   );
+  //@ts-ignore
   const history = useSelector((state: RootState) => state.history.records);
 
   const { register, handleSubmit, watch, reset } = useForm({
@@ -79,15 +80,15 @@ const DashboardPage = () => {
       </Typography>
 
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} md={6}>
+        <Grid>
           <TextField fullWidth label="Введите команды" {...register("input")} />
         </Grid>
-        <Grid item>
+        <Grid>
           <Button variant="outlined" onClick={handleOptimize} type="button">
             Оптимизировать
           </Button>
         </Grid>
-        <Grid item>
+        <Grid>
           <Button variant="contained" type="submit">
             Запустить
           </Button>
