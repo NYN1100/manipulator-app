@@ -12,9 +12,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { addHistory } from "../store/slice/historySlice";
 import { moveManipulator } from "../store/slice/manipulatorSlice";
@@ -23,6 +24,13 @@ import type { CommandHistory } from "../types/CommandHistory";
 import { optimizeCommandsRLE } from "../utils/optimize";
 
 const DashboardPage = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("isAuth") !== "true") {
+      navigate("/login");
+    }
+  }, [navigate]);
+
   const dispatch = useDispatch();
   const { position, samples } = useSelector(
     (state: RootState) => state.manipulator

@@ -1,5 +1,5 @@
 import { Button, Container, TextField, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -16,11 +16,11 @@ export default function LoginPage() {
     }
   };
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("isAuth") === "true") {
-  //     navigate("/");
-  //   }
-  // }, [, localStorage.getItem("isAuth")]);
+  useEffect(() => {
+    if (localStorage.getItem("isAuth") === "true") {
+      navigate("/");
+    }
+  }, [navigate]);
 
   return (
     <Container maxWidth="sm" sx={{ mt: 10 }}>
